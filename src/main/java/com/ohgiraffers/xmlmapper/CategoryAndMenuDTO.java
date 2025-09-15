@@ -37,7 +37,7 @@ public class CategoryAndMenuDTO {
     public Integer getRefCategoryCode() {
         return refCategoryCode;
     }
-
+//sadsadasdas
     public void setRefCategoryCode(Integer refCategoryCode) {
         this.refCategoryCode = refCategoryCode;
     }
