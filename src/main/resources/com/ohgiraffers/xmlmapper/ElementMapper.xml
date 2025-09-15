@@ -68,19 +68,34 @@
     </select>
 
     <!-- 3. Collection 관계에서 resultMap 2개 활용 -->
+    <!--    <resultMap id="categoryAndMenuResultMap"-->
+    <!--               type="com.ohgiraffers.xmlmapper.CategoryAndMenuDTO">-->
+    <!--        <id property="categoryCode" column="CACO"/>  &lt;!&ndash; 같은 컬럼은 에러는 나지 않지만 가급적 별칭 활용 &ndash;&gt;-->
+    <!--        <result property="categoryName" column="CATEGORY_NAME"/>-->
+    <!--        <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>-->
+    <!--        <collection property="menus" resultMap="menuResultMap3"/>-->
+    <!--    </resultMap>-->
+    <!--    <resultMap id="menuResultMap3" type="com.ohgiraffers.xmlmapper.MenuDTO">-->
+    <!--        <id property="menuCode" column="MENU_CODE"/>-->
+    <!--        <result property="menuName" column="MENU_NAME"/>-->
+    <!--        <result property="menuPrice" column="MENU_PRICE"/>-->
+    <!--        <result property="categoryCode" column="CACO"/>-->
+    <!--        <result property="orderableStatus" column="ORDERABLE_STATUS"/>-->
+    <!--    </resultMap>-->
+
+    <!-- 4. Collection 관계에서 resultMap 1개 활용 -->
     <resultMap id="categoryAndMenuResultMap"
                type="com.ohgiraffers.xmlmapper.CategoryAndMenuDTO">
         <id property="categoryCode" column="CACO"/>  <!-- 같은 컬럼은 에러는 나지 않지만 가급적 별칭 활용 -->
         <result property="categoryName" column="CATEGORY_NAME"/>
         <result property="refCategoryCode" column="REF_CATEGORY_CODE"/>
-        <collection property="menus" resultMap="menuResultMap3"/>
-    </resultMap>
-    <resultMap id="menuResultMap3" type="com.ohgiraffers.xmlmapper.MenuDTO">
-        <id property="menuCode" column="MENU_CODE"/>
-        <result property="menuName" column="MENU_NAME"/>
-        <result property="menuPrice" column="MENU_PRICE"/>
-        <result property="categoryCode" column="CACO"/>
-        <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        <collection property="menus" ofType="com.ohgiraffers.xmlmapper.MenuDTO">
+            <id property="menuCode" column="MENU_CODE"/>
+            <result property="menuName" column="MENU_NAME"/>
+            <result property="menuPrice" column="MENU_PRICE"/>
+            <result property="categoryCode" column="CACO"/>
+            <result property="orderableStatus" column="ORDERABLE_STATUS"/>
+        </collection>
     </resultMap>
     <select id="selectResultMapCollectionTest" resultMap="categoryAndMenuResultMap">
         SELECT
